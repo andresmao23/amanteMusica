@@ -98,6 +98,117 @@ public class Control {
         }
     }
 
+    public void actualizaCancion(JFrame frame) {
+        Cancion cancion;
+        StringBuffer respuesta = new StringBuffer("");
+        DlgCancion dlgCancion;
+        Vector listaGenerosCanciones;
+        DefaultComboBoxModel<Genero> generosCancionesComboBoxModel;
+        // Captura la clave de la cancion
+        String clave = JOptionPane.showInputDialog(frame, "Clave de la cancion:", "Actualizar cancion",JOptionPane.QUESTION_MESSAGE);
+        // Si el usuario presiono el boton Cancelar
+        if (clave == null) {
+            return;
+        }
+        // Crea un objeto Cancion con solo la clave
+        cancion = new Cancion(clave);
+        try {
+            // Obten la cancion del catalogo de canciones
+            cancion = fachada.obten(cancion);
+        } catch (Exception e) {
+            // Si ocurrio un error al leer del catalogo de canciones,
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Si la cancion no existe, despliega un mensaje de error
+        if (cancion == null) {
+            JOptionPane.showMessageDialog(frame,    "La cancion no existe", "Error!!.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            // Obtiene la lista de generos de canciones
+            listaGenerosCanciones = fachada.consultaGenerosCanciones();
+        } catch (Exception e) {
+            // Si ocurrio un error al obtener la lista de la base de datos,
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        generosCancionesComboBoxModel = conversiones.generosComboBoxModel(listaGenerosCanciones);
+        // Si la cancion existe, edita los datos de la cancion
+        dlgCancion = new DlgCancion(frame, "Edita Datos Cancion", true, cancion, generosCancionesComboBoxModel, ConstantesGUI.ACTUALIZAR, respuesta);
+        // Si el usuario presiono el boton Cancelar
+        if (respuesta.substring(0).equals(ConstantesGUI.CANCELAR)) {
+            return;
+        }
+        // Actualiza la cancion del catalogo de canciones
+        try {
+            fachada.actualiza(cancion);
+        } catch (Exception e) {
+            // Si ocurrio un error al escribir al catalogo de canciones,
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void eliminaCancion(JFrame frame) {
+        Cancion cancion;
+        StringBuffer respuesta = new StringBuffer();
+        DlgCancion dlgCancion;
+        Vector listaGenerosCanciones;
+        DefaultComboBoxModel<Genero> generosCancionesComboBoxModel;
+        // Captura la clave de la cancion
+        String clave = JOptionPane.showInputDialog(frame, "Clave de la cancion:", "Eliminar cancion", JOptionPane.QUESTION_MESSAGE);
+        // Si el usuario presiono el boton Cancelar
+        if (clave == null) {
+            return;
+        }
+        // Crea un objeto Cancion con solo la clave
+        cancion = new Cancion(clave);
+        try {
+            // Obten la cancion del catalogo de canciones
+            cancion = fachada.obten(cancion);
+        } catch (Exception e) {
+            // Si ocurrio un error al leer del catalogo de canciones
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Si la cancion no existe en el catalogo de canciones,
+        if (cancion == null) {
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, "La cancion no existe", "Error!!.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            // Obtiene la lista de generos de canciones
+            listaGenerosCanciones = fachada.consultaGenerosCanciones();
+        } catch (Exception e) {
+            // Si ocurrio un error al obtener la lista de la base de datos,
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        generosCancionesComboBoxModel = conversiones.
+                generosComboBoxModel(listaGenerosCanciones);
+        // Si existe la cancion, despliega los datos de la cancion
+        dlgCancion = new DlgCancion(frame, "Cancion a borrar", true, cancion, generosCancionesComboBoxModel, ConstantesGUI.ELIMINAR, respuesta);
+        // Si el usuario presiono el boton Cancelar
+        if (respuesta.substring(0).equals(ConstantesGUI.CANCELAR)) {
+            return;
+        }
+        try {
+            // Elimina la cancion del catalogo de canciones
+            fachada.elimina(cancion);
+        } catch (Exception e) {
+            // Si ocurrio un error al borrar del catalogo de canciones,
+            // despliega mensaje de error
+            JOptionPane.showMessageDialog(frame, e.getMessage(), "Error!!.", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     /**
      * Regresa un objeto Tabla con todas las canciones
      *

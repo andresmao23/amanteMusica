@@ -9,6 +9,11 @@ import control.Control;
 import control.Tabla;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import objetosNegocio.Cancion;
+import objetosNegocio.Genero;
 //import persistencia.Tabla;
 
 /**
@@ -406,11 +411,21 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_opcionMenuAgregarCancionActionPerformed
 
     private void opcionMenuActualizarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuActualizarCancionActionPerformed
-        // TODO add your handling code here:
+        // Actualiza la canción
+        control.actualizaCancion(this);
+        // Obtiene la lista de canciones
+        Tabla tablaCanciones = control.getTablaCanciones(this);
+        // Despliega la lista de canciones
+        despliegaTabla(tablaCanciones);
     }//GEN-LAST:event_opcionMenuActualizarCancionActionPerformed
 
     private void opcionMenuEliminarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuEliminarCancionActionPerformed
-        // TODO add your handling code here:
+        // Elimina la canción
+        control.eliminaCancion(this);
+        // Obtiene la lista de canciones
+        Tabla tablaCanciones = control.getTablaCanciones(this);
+        // Despliega la lista de canciones
+        despliegaTabla(tablaCanciones);
     }//GEN-LAST:event_opcionMenuEliminarCancionActionPerformed
 
     private void opcionMenuAgregarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuAgregarPeliculaActionPerformed
@@ -439,6 +454,12 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
 
     private void opcionMenuConsultaCancionesTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuConsultaCancionesTodasActionPerformed
         // TODO add your handling code here:
+        // Obtiene la lista de canciones
+        Tabla tablaCanciones = control.getTablaCanciones(this);
+        // Despliega la lista de canciones
+        if (tablaCanciones != null) {
+            despliegaTabla(tablaCanciones);
+        }
     }//GEN-LAST:event_opcionMenuConsultaCancionesTodasActionPerformed
 
     private void opcionMenuConsultaCancionesTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuConsultaCancionesTituloActionPerformed
@@ -580,6 +601,5 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
 
     private javax.swing.JTable jtabla;
     Control control = new Control();
-    
 
 }
