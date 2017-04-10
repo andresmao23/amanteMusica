@@ -5,8 +5,11 @@
  */
 package interfazGrafica;
 
+import control.Control;
+import control.Tabla;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+//import persistencia.Tabla;
 
 /**
  *
@@ -39,10 +42,8 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
         setLocation((screenSize.width - frameSize.width) / 2,
                 (screenSize.height - frameSize.height) / 2);
     }
-    
-    
-    
-    /*public void despliegaTabla(Tabla tabla) {
+
+    public void despliegaTabla(Tabla tabla) {
         // Crea la tabla a partir del modelo de la tabla con los valores
         // de los titulos de las columnas y los valores de las celdas
         jtabla = new javax.swing.JTable(tabla.getModeloTabla());
@@ -55,8 +56,7 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
         // Hace visible la tabla dentro del panel con barras de
         // deslizamiento
         jScrollPane1.setViewportView(jtabla);
-    }*/
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,7 +111,6 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
         setTitle("Amante Música");
 
         tituloTabla.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tituloTabla.setText("jLabel1");
 
         jScrollPane1.setBorder(null);
 
@@ -385,8 +384,8 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(tituloTabla)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -398,6 +397,12 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
 
     private void opcionMenuAgregarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuAgregarCancionActionPerformed
         // TODO add your handling code here:
+        // Agrega la nueva canción
+        control.agregaCancion(this);
+        // Obtiene la lista de canciones
+        Tabla tablaCanciones = control.getTablaCanciones(this);
+        // Despliega la lista de canciones
+        despliegaTabla(tablaCanciones);
     }//GEN-LAST:event_opcionMenuAgregarCancionActionPerformed
 
     private void opcionMenuActualizarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuActualizarCancionActionPerformed
@@ -574,5 +579,7 @@ public class FrmAmanteMusica extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private javax.swing.JTable jtabla;
+    Control control = new Control();
+    
 
 }

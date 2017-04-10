@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -111,6 +112,5 @@ public class Tabla {
             throw new PersistenciaException("No se puede actualizar a la base de datos", se);
         }
     }
-
 
 }

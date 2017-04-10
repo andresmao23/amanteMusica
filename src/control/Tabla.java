@@ -32,40 +32,60 @@ public class Tabla {
         this.titulo = titulo;
         this.modeloTabla = modeloTabla;
     }
+    
+    
+    
+    
+//
+//    /**
+//     * Regresa el titulo de la tabla
+//     *
+//     * @return El titulo de la tabla
+//     */
+//    public String getTitulo() {
+//        return titulo;
+//    }
+//
+//    /**
+//     * Establece el titulo de la tabla
+//     *
+//     * @param titulo Titulo de la tabla
+//     */
+//    public void setTitulo(String titulo) {
+//        this.titulo = titulo;
+//    }
+//
+//    /**
+//     * Regresa los datos de la tabla
+//     *
+//     * @return Objeto TableModel con los datos de la tabla
+//*
+//     */
+//    public DefaultTableModel getModeloTabla() {
+//        return modeloTabla;
+//    }
+//
+//    /**
+//     * Establece los datos de la tabla
+//     *
+//     * @param modeloTabla Objeto TableModel con los datos de la tabla
+//     */
+//    public void setModeloTabla(DefaultTableModel modeloTabla) {
+//        this.modeloTabla = modeloTabla;
+//    }
 
-    /**
-     * Regresa el titulo de la tabla
-     *
-     * @return El titulo de la tabla
-     */
     public String getTitulo() {
         return titulo;
     }
 
-    /**
-     * Establece el titulo de la tabla
-     *
-     * @param titulo Titulo de la tabla
-     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    /**
-     * Regresa los datos de la tabla
-     *
-     * @return Objeto TableModel con los datos de la tabla
-*
-     */
     public DefaultTableModel getModeloTabla() {
         return modeloTabla;
     }
 
-    /**
-     * Establece los datos de la tabla
-     *
-     * @param modeloTabla Objeto TableModel con los datos de la tabla
-     */
     public void setModeloTabla(DefaultTableModel modeloTabla) {
         this.modeloTabla = modeloTabla;
     }

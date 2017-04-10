@@ -117,7 +117,7 @@ public class FachadaBD implements IFachada {
             // Agrega la nueva canción a la tabla
             catalogoCanciones.agrega(cancion);
         } catch (PersistenciaException pe) {
-            throw new FachadaException("No se puede agregar la canción", pe);
+            throw new FachadaException("No se puede agregar la canciónMao", pe);
         } finally {
             // Cierra la conexión
             try {
@@ -125,7 +125,7 @@ public class FachadaBD implements IFachada {
                     conexion.close();
                 }
             } catch (PersistenciaException pe) {
-                throw new FachadaException("No se puede agregar la canción", pe);
+                throw new FachadaException("No se puede agregar la canciónMao", pe);
             }
         }
     }

@@ -64,6 +64,7 @@ public class Canciones extends Tabla {
         String sql = "";
         // Crea la sentencia para insertar.
         // La sentencia debe terminar en un ;
+        
         sql += "INSERT " + nomTabla;
         sql += " SET clave = '" + cancion.getClave() + "'";
         sql += ", titulo = '" + cancion.getTitulo() + "'";
@@ -71,7 +72,7 @@ public class Canciones extends Tabla {
         sql += ", interprete = '" + cancion.getInterprete() + "'";
         sql += ", autorLetra = '" + cancion.getAutor() + "'";
         sql += ", album = '" + cancion.getAlbum() + "'";
-        sql += ", duracion = '" + cancion.getDuracion() + "'";
+        sql += ", duracion = '" + cancion.getDuracion() + "';";
         //sql += ", fecha = \"" + cancion.getFecha().toDateString() + "\";";
         // Ejecuta la sentencia
         actualiza(sql);
